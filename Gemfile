@@ -35,6 +35,15 @@ gem 'sdoc', '~> 1.1.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 11.0.1'
+  # Framework and DSL for defining and using factories - less error-prone, more explicit, and easier to work with than fixtures
+  gem 'factory_bot_rails', '~> 5.2.0'
+  # Ruby on Rails code testing tool
+  gem 'rspec-rails', '~> 4.0.1'
+  # Ruby on Rails linter
+  gem 'rubocop-rails', '~> 2.5.2'
+  # Shoulda Matchers provides RSpec compatible one-liners to test common Rails functionality that,
+  # if written by hand, would be much longer, more complex, and error-prone.
+  gem 'shoulda-matchers', '~> 4.0.1'
 end
 
 group :development do
