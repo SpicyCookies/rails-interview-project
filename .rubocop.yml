@@ -15,4 +15,3 @@ AllCops:
     - '**/rails'
     - '**/spec_helper.rb'
     - '**/rails_helper.rb'
-    - '**/test/**/*'
