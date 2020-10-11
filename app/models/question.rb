@@ -1,6 +1,6 @@
-class Question < ActiveRecord::Base
+# frozen_string_literal: true
 
-  has_many :answers
+class Question < ApplicationRecord
+  has_many :answers, dependent: :destroy
   belongs_to :user
-
 end
