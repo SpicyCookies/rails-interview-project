@@ -32,6 +32,9 @@ gem 'sdoc', '~> 1.1.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# A slow serializer
+gem 'active_model_serializers', '~> 0.10.10'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 11.0.1'
