@@ -3,6 +3,7 @@ require: rubocop-rails
 inherit_from: .rubocop_exclusions.yml
 
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 2.6
   Exclude:
     - '**/bin/*'
