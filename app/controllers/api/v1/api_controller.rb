@@ -13,9 +13,10 @@ module Api
       # Internal: Mock API authentication for controller actions
       #
       # Raises UnauthorizedRequestError exception on invalid token lookup
-      # Returns a Tenant
+      # Returns a boolean and increments the authenticated tenant
       def authenticate!
-        Tenant.find_by!(api_key: token)
+        tenant = Tenant.find_by!(api_key: token)
+        tenant.update(request_count: tenant.request_count + 1)
       rescue ActiveRecord::RecordNotFound => e
         raise RailsInterviewProject::Errors::UnauthorizedRequestError, "#{e.class}: #{e.message}"
       end
