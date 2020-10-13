@@ -13,7 +13,7 @@ module Api
       # Internal: Mock API authentication for controller actions
       #
       # Raises UnauthorizedRequestError exception on invalid token lookup
-      # Returns a Tenant
+      # Returns a boolean and increments the authenticated tenant
       def authenticate!
         tenant = Tenant.find_by!(api_key: token)
         tenant.update(request_count: tenant.request_count + 1)
