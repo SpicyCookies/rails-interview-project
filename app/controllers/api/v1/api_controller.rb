@@ -5,14 +5,14 @@ module Api
     class ApiController < ApplicationController
       include Concerns::ExceptionHandler
 
-      # Handle AuthenticationErrors
+      # Handle UnauthorizedRequestError
       rescue_from RailsInterviewProject::Errors::UnauthorizedRequestError, with: :handle_unauthorized_error
 
       private
 
       # Internal: Mock API authentication for controller actions
       #
-      # Raises TenantNotFound exception on invalid token lookup
+      # Raises UnauthorizedRequestError exception on invalid token lookup
       # Returns a Tenant
       def authenticate!
         Tenant.find_by!(api_key: token)
