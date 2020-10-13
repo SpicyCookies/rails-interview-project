@@ -2,7 +2,9 @@
 
 module Api
   module V1
-    class QuestionsController < ApplicationController
+    class QuestionsController < ApiController
+      before_action :authenticate!
+
       def index
         # Only retrieve public questions
         questions = Question.where(private: false)

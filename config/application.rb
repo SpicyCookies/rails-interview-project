@@ -24,5 +24,10 @@ module RailsInterviewProject
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Add files that are not Rails files for development/test
+    config.autoload_paths += %W[#{config.root}/lib/ #{config.root}/lib]
+    # Add files that are not Rails files for production
+    config.eager_load_paths += %W[#{config.root}/lib]
   end
 end

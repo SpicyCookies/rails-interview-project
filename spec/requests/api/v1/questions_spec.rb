@@ -3,6 +3,19 @@
 require 'rails_helper'
 
 describe '/api/v1/questions', type: :request do
+  let(:tenant_1) { FactoryBot.create(:tenant) }
+  let(:token) { tenant_1.api_key }
+
+  let(:headers) do
+    {
+      'Authorization' => "#{token}"
+    }
+  end
+
+  before do
+    tenant_1
+  end
+
   describe '#index' do
     let(:user_1) do
       FactoryBot.create(:user)
@@ -29,7 +42,7 @@ describe '/api/v1/questions', type: :request do
     end
 
     subject do
-      get '/api/v1/questions'
+      get '/api/v1/questions', headers: headers
     end
 
     before do
@@ -95,6 +108,26 @@ describe '/api/v1/questions', type: :request do
         subject
         response_body = JSON.parse(response.body)
         expect(response_body).to match_array(expected_response)
+      end
+    end
+
+    context 'with an invalid authorization token' do
+      let(:token) { 'invalid token' }
+      let(:expected_response) do
+        {
+          'error' => "ActiveRecord::RecordNotFound: Couldn't find Tenant"
+        }
+      end
+
+      it 'renders a 401 status' do
+        subject
+        expect(response).to have_http_status(401)
+      end
+
+      it 'renders an error message' do
+        subject
+        response_body = JSON.parse(response.body)
+        expect(response_body).to eq(expected_response)
       end
     end
   end
