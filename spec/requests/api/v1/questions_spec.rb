@@ -8,7 +8,7 @@ describe '/api/v1/questions', type: :request do
 
   let(:headers) do
     {
-      'Authorization' => "#{token}"
+      'Authorization' => token.to_s
     }
   end
 
