@@ -36,10 +36,10 @@ gem 'sdoc', '~> 1.1.0', group: :doc
 gem 'active_model_serializers', '~> 0.10.10'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', '~> 11.0.1'
   # Framework and DSL for defining and using factories - less error-prone, more explicit, and easier to work with than fixtures
   gem 'factory_bot_rails', '~> 5.2.0'
+  # Adds step-by-step debugging and stack navigation capabilities to pry using byebug
+  gem 'pry-byebug', '~> 3.9.0'
   # Ruby on Rails code testing tool
   gem 'rspec-rails', '~> 4.0.1'
   # Ruby on Rails linter
