@@ -115,7 +115,8 @@ describe '/api/v1/questions', type: :request do
       let(:token) { 'invalid token' }
       let(:expected_response) do
         {
-          'error' => "ActiveRecord::RecordNotFound: Couldn't find Tenant"
+          'class' => 'RailsInterviewProject::Errors::UnauthorizedRequestError',
+          'message' => "ActiveRecord::RecordNotFound: Couldn't find Tenant"
         }
       end
 
