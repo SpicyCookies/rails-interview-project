@@ -12,10 +12,10 @@ describe '/api/v1/questions', type: :request do
     end
 
     let(:question_1) do
-      FactoryBot.create(:question, user_id: user_1.id)
+      FactoryBot.create(:question, user_id: user_1.id, private: false)
     end
     let(:question_2) do
-      FactoryBot.create(:question, user_id: user_2.id)
+      FactoryBot.create(:question, user_id: user_2.id, private: false)
     end
     let(:private_question) do
       FactoryBot.create(:question, user_id: user_2.id, private: true)
