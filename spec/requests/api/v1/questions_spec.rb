@@ -12,10 +12,13 @@ describe '/api/v1/questions', type: :request do
     end
 
     let(:question_1) do
-      FactoryBot.create(:question, user_id: user_1.id)
+      FactoryBot.create(:question, user_id: user_1.id, private: false)
     end
     let(:question_2) do
-      FactoryBot.create(:question, user_id: user_2.id)
+      FactoryBot.create(:question, user_id: user_2.id, private: false)
+    end
+    let(:private_question) do
+      FactoryBot.create(:question, user_id: user_2.id, private: true)
     end
 
     let(:answer_1) do
@@ -32,6 +35,7 @@ describe '/api/v1/questions', type: :request do
     before do
       answer_1
       answer_2
+      private_question
     end
 
     context 'with no query params passed' do
@@ -87,7 +91,7 @@ describe '/api/v1/questions', type: :request do
         expect(response).to have_http_status(200)
       end
 
-      it 'successfully retrieves questions' do
+      it 'successfully retrieves public questions' do
         subject
         response_body = JSON.parse(response.body)
         expect(response_body).to match_array(expected_response)
