@@ -6,6 +6,7 @@ p {
   font-size: 15px;
 }
 
+// Cards
 * {
 	box-sizing: border-box;
 }
@@ -14,7 +15,8 @@ body {
 }
 .column {
 	float: left;
-	width: 25%;
+  width: 33.33%;
+  width: calc(100% / 3);
 	padding: 0 10px;
 }
 .row {
@@ -39,6 +41,7 @@ body {
 	}
 }
 
+// Table
 #tenants {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	border-collapse: collapse;
