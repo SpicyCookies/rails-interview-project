@@ -5,7 +5,6 @@ class WelcomeController < ApplicationController
     @total_users = User.count
     @total_questions = Question.count
     @total_answers = Answer.count
-    @total_tenants = Tenant.count
     @tenants = Tenant.all
   end
 end
