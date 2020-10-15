@@ -1,6 +1,12 @@
 # rubocop_exclusions
 # Configuration for RuboCop rules to ignore
 
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - '**/spec/**/*'
+    - '**/config/initializers/devise.rb'
+
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
 
@@ -19,12 +25,6 @@ Metrics/ModuleLength:
 
 Style/Documentation:
   Enabled: false
-
-Metrics/LineLength:
-  Max: 120
-  Exclude:
-    - '**/spec/**/*'
-    - '**/config/initializers/devise.rb'
 
 Metrics/MethodLength:
   CountComments: false

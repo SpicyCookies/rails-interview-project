@@ -51,7 +51,7 @@ describe '/api/v1/questions', type: :request do
       private_question
     end
 
-    context 'with no query params passed' do
+    context 'with valid request' do
       let(:expected_answer_1) do
         {
           'id' => answer_1.id,
@@ -108,6 +108,10 @@ describe '/api/v1/questions', type: :request do
         subject
         response_body = JSON.parse(response.body)
         expect(response_body).to match_array(expected_response)
+      end
+
+      it 'increments the tenant request count' do
+        expect { subject }.to change { tenant_1.reload.request_count }.by(1)
       end
     end
 
