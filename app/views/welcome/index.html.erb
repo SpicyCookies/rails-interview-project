@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <h3>Total Users</h3>
+      <p>
+        <%= @total_users %>
+      </p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <h3>Total Questions</h3>
+      <p>
+        <%= @total_questions %>
+      </p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <h3>Total Answers</h3>
+      <p>
+        <%= @total_answers %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<table id="tenants">
+  <tr>
+    <th>
+      Tenant Name
+    </th>
+    <th>
+      Total Requests
+    </th>
+  </tr>
+  <% @tenants.each do |tenant| %>
+    <tr>
+      <td>
+        <%= tenant.name %>
+      </td>
+      <td>
+        <%= tenant.request_count %>
+      </td>
+    </tr>
+  <% end %>
+</table>
