@@ -24,14 +24,18 @@ describe '/api/v1/questions', type: :request do
       FactoryBot.create(:user)
     end
 
+    let(:title_query_match) { 'soup' }
+    let(:question_1_title) { "Is cereal #{title_query_match}?" }
+    let(:question_2_title) { 'Do you like bread?' }
+    let(:private_question_title) { "Is cereal not #{title_query_match}?" }
     let(:question_1) do
-      FactoryBot.create(:question, user_id: user_1.id, private: false)
+      FactoryBot.create(:question, user_id: user_1.id, title: question_1_title, private: false)
     end
     let(:question_2) do
-      FactoryBot.create(:question, user_id: user_2.id, private: false)
+      FactoryBot.create(:question, user_id: user_2.id, title: question_2_title, private: false)
     end
     let(:private_question) do
-      FactoryBot.create(:question, user_id: user_2.id, private: true)
+      FactoryBot.create(:question, user_id: user_2.id, title: private_question_title, private: true)
     end
 
     let(:answer_1) do
@@ -41,8 +45,9 @@ describe '/api/v1/questions', type: :request do
       FactoryBot.create(:answer, user_id: user_2.id, question_id: question_1.id)
     end
 
+    let(:request_query_params) { {} }
     subject do
-      get '/api/v1/questions', headers: headers
+      get '/api/v1/questions', params: request_query_params, headers: headers
     end
 
     before do
@@ -112,6 +117,21 @@ describe '/api/v1/questions', type: :request do
 
       it 'increments the tenant request count' do
         expect { subject }.to change { tenant_1.reload.request_count }.by(1)
+      end
+
+      context 'with title in the query params' do
+        let(:request_query_params) { { title: title_query_match } }
+        let(:expected_response) do
+          [
+            expected_question_1
+          ]
+        end
+
+        it 'successfully retrieves public questions that contain the title param' do
+          subject
+          response_body = JSON.parse(response.body)
+          expect(response_body).to match_array(expected_response)
+        end
       end
     end
 

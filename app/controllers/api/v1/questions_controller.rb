@@ -6,9 +6,28 @@ module Api
       before_action :authenticate!
 
       def index
-        # Only retrieve public questions
-        questions = Question.where(private: false)
-        render status: :ok, json: questions, each_serializer: QuestionSerializer
+        # Retrieve all public questions
+        public_questions = Question.where(private: false)
+
+        result_questions = if search_params[:title].present?
+                             # Search for public questions that contain the partial title param string
+                             public_questions.search(search_params[:title])
+                           else
+                             # Only return public questions
+                             public_questions
+                           end
+
+        render status: :ok, json: result_questions, each_serializer: QuestionSerializer
+      end
+
+      private
+
+      #
+      # Helper methods
+      #
+
+      def search_params
+        params.permit(:title)
       end
     end
   end
