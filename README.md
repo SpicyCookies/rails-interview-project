@@ -1,3 +1,20 @@
+# Additional Instructions:
+## Project Setup:
+- `bin/setup`
+## Running linting and tests:
+- `bundle exec rubocop`
+- `bundle exec rspec`
+## Documentation:
+### GET `/api/v1/questions`
+#### Description
+Endpoint for searching for public questions.
+Optional query parameters:
+title: String.
+- Example:
+`http://localhost:3000/api/v1/questions?title=banh`
+
+The PRs also have Postman screenshots if needed.
+
 # Kaleo Rails Engineer Candidate Interview Project
 
 Thanks for taking the time to complete this exercise. We're excited that you're considering joining our amazing team.
