@@ -8,6 +8,13 @@
 ### GET `/api/v1/questions`
 #### Description
 Endpoint for searching for public questions.
+
+Headers:
+- Authorization: 123exampleapitoken
+  - To retrieve:
+    - `rails c`
+    - `Tenant.all`
+
 Optional query parameters:
 title: String.
 - Example:
