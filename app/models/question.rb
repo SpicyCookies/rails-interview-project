@@ -6,6 +6,6 @@ class Question < ApplicationRecord
 
   # Searches for a question title that contains the partial title string
   scope :search, lambda { |title|
-    where("title LIKE ?", "%#{title}%")
+    where('title LIKE ?', "%#{title}%")
   }
 end

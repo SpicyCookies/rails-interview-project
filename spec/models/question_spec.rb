@@ -35,11 +35,11 @@ RSpec.describe Question, type: :model do
         question_2
       end
 
-      it "includes questions that contain the title param" do
+      it 'includes questions that contain the title param' do
         expect(subject).to include(question_1, question_3)
       end
 
-      it "does not include questions that do not contain the title param" do
+      it 'does not include questions that do not contain the title param' do
         expect(subject).not_to include(question_2)
       end
     end

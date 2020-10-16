@@ -45,7 +45,7 @@ describe '/api/v1/questions', type: :request do
       FactoryBot.create(:answer, user_id: user_2.id, question_id: question_1.id)
     end
 
-    let(:request_query_params) {{}}
+    let(:request_query_params) { {} }
     subject do
       get '/api/v1/questions', params: request_query_params, headers: headers
     end
@@ -120,7 +120,7 @@ describe '/api/v1/questions', type: :request do
       end
 
       context 'with title in the query params' do
-        let(:request_query_params) {{ title: title_query_match }}
+        let(:request_query_params) { { title: title_query_match } }
         let(:expected_response) do
           [
             expected_question_1

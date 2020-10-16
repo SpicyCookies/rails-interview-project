@@ -10,12 +10,12 @@ module Api
         public_questions = Question.where(private: false)
 
         result_questions = if search_params[:title].present?
-          # Search for public questions that contain the partial 'title' string
-          public_questions.search(search_params[:title])
-        else
-          # Only return public questions
-          public_questions
-        end
+                             # Search for public questions that contain the partial 'title' string
+                             public_questions.search(search_params[:title])
+                           else
+                             # Only return public questions
+                             public_questions
+                           end
 
         render status: :ok, json: result_questions, each_serializer: QuestionSerializer
       end
